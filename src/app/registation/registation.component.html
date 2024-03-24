@@ -1,0 +1,161 @@
+<form class="form" [formGroup]="registerForm">
+  <div class="form-field">
+    <label for="firstName">First name</label>
+    <input type="text" id="firstName" formControlName="firstName" />
+    <div class="error">
+      <div
+        *ngIf="
+          registerForm.get('firstName')?.hasError('required') &&
+          registerForm.get('firstName')?.touched
+        "
+      >
+        First Name is required
+      </div>
+      <div
+        *ngIf="
+          registerForm.get('firstName')?.hasError('minlength') &&
+          registerForm.get('firstName')?.touched
+        "
+      >
+        First Name must be min 4 characters
+      </div>
+      <div
+        *ngIf="
+          registerForm.get('firstName')?.hasError('maxlength') &&
+          registerForm.get('firstName')?.touched
+        "
+      >
+        First Name must be max 18 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="lastName">Last name</label>
+    <input type="text" id="lastName" formControlName="lastName" />
+    <div class="error">
+      <div
+        *ngIf="
+          registerForm.get('lastName')?.hasError('required') &&
+          registerForm.get('lastName')?.touched
+        "
+      >
+        Last Name is required
+      </div>
+      <div
+        *ngIf="
+          registerForm.get('lastName')?.hasError('minlength') &&
+          registerForm.get('lastName')?.touched
+        "
+      >
+        Last Name must be min 4 characters
+      </div>
+      <div
+        *ngIf="
+          registerForm.get('lastName')?.hasError('maxlength') &&
+          registerForm.get('lastName')?.touched
+        "
+      >
+        Last Name must be max 18 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="email">Email</label>
+    <input type="email" id="email" formControlName="email" />
+    <div class="error">
+      <div
+        *ngIf="
+          registerForm.get('email')?.hasError('required') &&
+          registerForm.get('email')?.touched
+        "
+      >
+        Email is required
+      </div>
+      <div *ngIf="registerForm.get('email')?.hasError('pattern')">
+        Email is invalid
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="birthDate">Birth date</label>
+    <input type="date" id="birthDate" formControlName="birthDate" />
+    <div class="error">
+      <div
+        *ngIf="
+          registerForm.get('birthDate')?.hasError('required') &&
+          registerForm.get('birthDate')?.touched
+        "
+      >
+        Birth Date is required
+      </div>
+      <div
+        *ngIf="
+          registerForm.get('birthDate')?.hasError('age') &&
+          registerForm.get('birthDate')?.touched
+        "
+      >
+        You are not Adult
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="password">Password</label>
+    <input
+      [type]="showPassword ? 'text' : 'password'"
+      id="password"
+      formControlName="password"
+    />
+    <button class="showPassword" (click)="onShowPass()">Show password</button>
+    <div class="error">
+      <div
+        *ngIf="
+          registerForm.get('password')?.hasError('required') &&
+          registerForm.get('password')?.touched
+        "
+      >
+        Password is required
+      </div>
+      <div
+        *ngIf="
+          registerForm.get('password')?.hasError('pattern') &&
+          registerForm.get('password')?.touched
+        "
+      >
+        Password is Weak
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="confirmPassword">Confirm password</label>
+    <input
+      type="password"
+      id="confirmPassword"
+      formControlName="confirmPassword"
+    />
+    <div class="error">
+      <div
+        *ngIf="
+          registerForm.get('confirmPassword')?.hasError('required') &&
+          registerForm.get('confirmPassword')?.touched
+        "
+      >
+        Confirm Password is required
+      </div>
+      <div
+        *ngIf="
+          registerForm.get('confirmPassword')?.hasError('passwordMatch') &&
+          registerForm.get('confirmPassword')?.touched
+        "
+      >
+        Passwords does not match
+      </div>
+    </div>
+  </div>
+
+  <button class="Submit-button" (click)="onSubmit()">Submit</button>
+</form>
